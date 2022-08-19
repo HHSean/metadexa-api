@@ -12,6 +12,7 @@ import { AggregatorQuote, TradeType } from '../interfaces/AggregatorQuote';
 import { OneInchQueryParameters } from '../interfaces/OneInch/OneInchQueryParameters';
 
 import { OneInchSwapResponse } from '../interfaces/OneInch/OneInchSwapResponse';
+import { FLASH_WALLET } from '../constants/addresses';
 
 require('axios-debug-log');
 
@@ -31,7 +32,7 @@ function createQueryStringRequestObject(
 			request.affiliateFee !== '' || request.affiliateFee !== undefined
 				? request.affiliateFee
 				: null,
-		destReceiver: '0xd3ebe696d208f8aebbd0235890374e9922a34259', // TODO retrieve from on-chain metaswap contract; be carefull if the flash wallet has changed;
+		destReceiver: FLASH_WALLET[request.chainId], // TODO retrieve from on-chain metaswap contract; be carefull if the flash wallet has changed;
 		fromAddress: request.fromAddress,
 		disableEstimate: true,
 	};

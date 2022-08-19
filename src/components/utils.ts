@@ -246,7 +246,7 @@ export function buildGaslessAggregatorCallData(
         const aggregator = betterRoute.to;
 
         const aggregatorData = betterRoute.data;
-        const adapterId = 'TrustedGaslessSwap';
+        const adapterId = 'GaslessSwap';
         const adapterData = web3.eth.abi.encodeParameter(
             'tuple(address,address,uint256,uint256,address,uint256,address,address,bytes)',
             [

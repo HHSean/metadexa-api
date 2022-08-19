@@ -6,20 +6,20 @@ type AddressMap = { [chainId: number]: string };
 
 // eslint-disable-next-line import/prefer-default-export
 export const METASWAP_ROUTER_CONTRACT_ADDRESS: AddressMap = {
-	[SupportedChainId.POLYGON]: '0xE10F5F77CF90c99976BceE524Fbf88504A2e6616',
+	[SupportedChainId.POLYGON]: '0x6afD834f6e3D5ad5A83E7838ca45F3DBDe3E323d',
 };
 
 export const MULTICALL_ADDRESS: AddressMap = {
-	[SupportedChainId.POLYGON]: '0x58Ae7C050830b75d4B49CEC78D4D93b558447344',
+	[SupportedChainId.POLYGON]: '0x7a1C1dc2a1B6d19135aDD10821dF70132A7f4E84',
 };
 
 export const FORWARDER_ADDRESS: AddressMap = {
-	[SupportedChainId.POLYGON]: '0xCe7cbDA67DE0BFdBBBAEA0DB94434a722A353CF4',
+	[SupportedChainId.POLYGON]: '0x316766609569e00c3484fE9e558A35b975064a62',
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export const AGGREGATOR_ADDRESS: AddressMap = {
-	[SupportedChainId.POLYGON]: '0x67b1844c457f1770fE9588da116F2E1149D73B98',
+export const FLASH_WALLET: AddressMap = {
+	[SupportedChainId.POLYGON]: '0xDdBE6Efb0d5A2bf9ABA843290D7a69f4db03Bfdd',
 };
 
 export const ONEINCH_AGGREGATOR_ADDRESS: AddressMap = {
