@@ -603,22 +603,24 @@ export default async function simulateTransaction(
         result,
     );
 
-    const beforeEthBalance = decodedData[0];
-    const afterEthBalance = isNonNativePaymentToken ? decodedData[5] : decodedData[2];
+    const resultData = decodedData.returnData;
 
-    const paymentFeeBalance = isNonNativePaymentToken ? decodedData[2] : paymentFees;
+    const beforeEthBalance = resultData[0]?.returnData;
+    const afterEthBalance = isNonNativePaymentToken ? resultData[5]?.returnData : resultData[2]?.returnData;
+
+    const paymentFeeBalance = isNonNativePaymentToken ? resultData[2]?.returnData : paymentFees;
     
     const paymentFeeBalanceBN = web3.utils.toBN(paymentFeeBalance);
     const ethBalanceDiff = web3.utils.toBN(afterEthBalance).sub(web3.utils.toBN(beforeEthBalance));
 
     const paymentFeeValid = paymentFeeBalanceBN.eq(web3.utils.toBN(paymentFees));
     if (!paymentFeeValid) {
-        throw new Error('Payment fee not valid');
+        throw new Error('Cannot accept the token as a relayer fee');
     }
 
-    const ethBalanceValid = ethBalanceDiff.gt(web3.utils.toBN(gasFees));
+    const ethBalanceValid = ethBalanceDiff.gte(web3.utils.toBN(gasFees));
     if (!ethBalanceValid) {
-        throw new Error('ETH fee not valid');
+        throw new Error('Cannot swap the token for native currency');
     }
 
     return new Ok(result);

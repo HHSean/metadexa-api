@@ -136,7 +136,7 @@ async function getValidatorGaslessQuote(
 		return txData;
 	}
 
-	await simulateTransaction(
+	const simulationResult = await simulateTransaction(
 		request.chainId,
 		request.slippage,
 		resultQuote,
@@ -148,6 +148,10 @@ async function getValidatorGaslessQuote(
 		signer,
 		gasFees,
 	);
+
+	if (simulationResult.err) {
+		return simulationResult;
+	}
 
 	return new Ok({
 		estimatedGas: resultQuote.estimatedGas,
